@@ -5,10 +5,12 @@ const thingController = require("../controllers/thing")
 
 router.get("/:id", thingController.getAllThings)
 
-router.put("/:id", thingController.modifyThing)
+router.put("/:id/modification/:thingID", thingController.modifyThing)
 
-router.post("/:id", thingController.createThing)
+router.post("/:id/creation", thingController.createThing)
 
 router.delete("/:id/deletion/:thingID", thingController.deleteOneThing)
+
+router.delete("/:id/deleteAll/:isDone", thingController.deleteAll)
 
 module.exports = router;

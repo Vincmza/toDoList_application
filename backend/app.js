@@ -14,46 +14,6 @@ mongoose.connect('mongodb+srv://vincentmzapro:7yj0ugMi5h8g1XQ7@todolistappcluste
 
 const app = express()
 
-const k = async ()=>{
-  try {
-    const resultRichard = await richard.insertMany([
-      {email: "filsDePute51@mekouilles.com", password: "je te baise salope"},
-      {email: "nathAimelaCybeSecu@sodo.fr", password: "Salut LES devs"}
-    ])
-    const getRichard = await richard.find().where("email").equals("filsDePute51@mekouilles.com")
-    const getNath = await richard.find().where("email").equals("nathAimelaCybeSecu@sodo.fr")
-    const resultThing = await truc.insertMany([
-      {
-        description: "Buter mon boss à grands coups de tisonnier",
-        isDone: false,
-        userIdentifier: getRichard[0]._id.toString()
-      },
-      {
-        description: "Beurrer les tartines",
-        isDone: false,
-        userIdentifier: getRichard[0]._id.toString()
-      },
-      {
-        description: "Acheter de la farine",
-        isDone: true,
-        userIdentifier: getNath[0]._id.toString()
-      },
-      {
-        description: "Passer à la pharmacie pour la vaseline",
-        isDone: true,
-        userIdentifier: getNath[0]._id.toString()
-      }
-    ])
-    console.log("RICHARD ==> ", resultRichard)
-    console.log("THING ==> ", resultThing)
-  }
-  catch(err){
-    console.log("ERREUR ==> ", err)
-  }
-  
-}
-
-
 app.use(morgan('dev'))
 
 app.use((req, res, next) => {

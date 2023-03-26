@@ -21,7 +21,7 @@ exports.createThing = (req, res, next) => {
 
 exports.modifyThing = (req, res, next) => {
     Thing
-    .updateOne({_id: req.body.id}, {$set: {description: req.body.description, isDone: req.body.isDone}})
+    .updateOne({_id: req.params.thingID}, {$set: {description: req.body.description, isDone: req.body.isDone}})
     .then(() => res.status(200).json({message: "Objet modifié avec succès !"}))
     .catch(error => res.status(400).json({error}))
 }
@@ -34,8 +34,20 @@ exports.deleteOneThing = (req, res, next) => {
     .catch((error)=> res.status(500).json({error}))
 }
 
-exports.deleteEverything = (req, res, next) => {
-
+exports.deleteAll = (req, res, next) => {
+    if(req.params.isDone == "null"){
+        Thing.deleteMany({userIdentifier: req.params.id})
+        .then(()=> res.status(200).json({message: "Toutes vos tâches ont été supprimées !"}))
+        .catch(error=>res.status(400).json({error}))
+    }else if(req.params.isDone == "true"){
+        Thing.deleteMany({userIdentifier: req.params.id, isDone: true})
+        .then(()=> res.status(200).json({message: "Toutes vos tâches accomplies ont été supprimées !"}))
+        .catch(error=>res.status(400).json({error}))
+    }else if(req.params.isDone == "false"){
+        Thing.deleteMany({userIdentifier: req.params.id, isDone: false})
+        .then(()=> res.status(200).json({message: "Toutes vos tâches en attente ont été supprimées !"}))
+        .catch(error=>res.status(400).json({error}))
+    }
 }
 
 
