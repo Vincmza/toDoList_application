@@ -11,7 +11,7 @@ exports.getAllThings = (req, res, next) => {
 exports.createThing = (req, res, next) => {
     const data = new Thing({
         description: req.body.description,
-        userIdentifier: req.body.userIdentifier,
+        userIdentifier: req.params.id,
         isDone: false
     })
     data.save()

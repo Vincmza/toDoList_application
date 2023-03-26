@@ -17,11 +17,16 @@ const userSchema = mongoose.Schema({
         minlength: 10, 
         maxlength: 100
     },
+    secretQuestion : {
+        type: String,
+        required: false,
+        trim: true,
+        maxlength: 100
+    },
     answerToSecretQuestion : {
         type: String, 
         required: false, 
         trim: true,
-        minlength: 10, 
         maxlength: 100
     },
     creationDate: {
